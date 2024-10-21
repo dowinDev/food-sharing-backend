@@ -1,10 +1,8 @@
 'use strict';
 
-module.exports = () => {
-    class OTPRequest {
-        constructor(otp){
-            this.otp = otp;
-        }
-    }
-    return OTPRequest;
+import { ApiProperty } from "@nestjs/swagger";
+
+export class OTPRequest{
+    @ApiProperty()
+    otp: string;
 }
