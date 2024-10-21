@@ -3,7 +3,7 @@
 import { AccountRepository } from '../persistence/repository/account.repository';
 import { UsersRepository } from '../persistence/repository/users.repository';
 import { Injectable } from '@nestjs/common';
-import { RegisterRequest } from '../dto/request';
+import { RegisterRequest } from '../dto/request/RegisterRequest';
 import { rolesEnum } from '../utils/Constants';
 import { UsersMapper } from '../utils/mapper/UsersMapper';
 import { AuthenticationResponse } from '../dto/response/AuthenticationResponse';

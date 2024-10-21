@@ -3,7 +3,7 @@
 import { Module } from '@nestjs/common';
 import { SequelizeModule } from '@nestjs/sequelize';
 import * as dotenv from 'dotenv';
-import { I18nModule } from 'nestjs-i18n';
+import { AcceptLanguageResolver, I18nModule, QueryResolver } from 'nestjs-i18n';
 import * as path from 'node:path';
 import { models } from '../entity';
 import { databaseConfig } from '../../config/db.config';
@@ -38,7 +38,7 @@ dotenv.config();
 // Kiểm tra môi trường hiện tại
 const environment = process.env.NODE_ENV;
 const currentConfig = databaseConfig[environment];
-const paths = path.join(__dirname, '../../utils/i18n');
+const paths = path.join(__dirname, '../..', 'utils', 'i18n');
 
 @Module({
   imports: [
@@ -60,6 +60,10 @@ const paths = path.join(__dirname, '../../utils/i18n');
         path: paths,
         watch: true,
       },
+      resolvers: [
+        { use: QueryResolver, options: ['lang'] },
+        AcceptLanguageResolver,
+      ],
     }),
 
     PassportModule.register({ defaultStrategy: 'jwt' }),

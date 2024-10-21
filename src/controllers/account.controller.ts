@@ -2,7 +2,7 @@
 
 import { Body, Controller, Get, Post, UseGuards } from '@nestjs/common';
 import { AccountService } from '../service/account.service';
-import { RegisterRequest } from '../dto/request';
+import { RegisterRequest } from '../dto/request/RegisterRequest';
 import { AuthenticationResponse } from '../dto/response/AuthenticationResponse';
 import {
   ApiBearerAuth,

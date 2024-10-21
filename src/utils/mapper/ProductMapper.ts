@@ -5,7 +5,6 @@ import { Products } from '../../persistence/entity/Products';
 import { ProductResponse } from '../../dto/response/ProductResponse';
 import { PageData } from '../../config/response/page.data';
 import { Eatery } from '../../persistence/entity/Eaterys';
-import * as path from 'node:path';
 
 export class ProductMapper {
   static mapToProduct(
