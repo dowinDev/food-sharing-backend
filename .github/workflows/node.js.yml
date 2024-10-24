@@ -20,3 +20,5 @@ jobs:
     steps:
     - name: Install dependencies
       run: npm install
+    - name: copy source
+      run: cp -r * /www/wwwroot/food-sharing/
