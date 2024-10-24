@@ -48,11 +48,12 @@ npm install multer
 npm install @nestjs/serve-static
 npm install @types/multer
 npm install @types/uuid
+npm install ioredis
 npm install sequelize-typescript
 npm install @types/lodash 
 npm install --save @nestjs/swagger swagger-ui-express
 npm install @nestjs/jwt @nestjs/passport passport-jwt
-npm install bcrypt
+npm install bcrypt@latest
 npm install @types/passport-jwt 
 npm install class-transformer class-validator
 npm install @nestjs/sequelize sequelize sequelize-typescript
