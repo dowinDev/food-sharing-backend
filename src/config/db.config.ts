@@ -14,6 +14,16 @@ export const databaseConfig = {
     language: process.env.SV_LANG,
     secretKey: process.env.SECRET_KEY,
   },
+  server: {
+    user: process.env.DB_USER,
+    host: process.env.DB_HOST_SERVER,
+    database: process.env.DB_NAME,
+    password: process.env.DB_PASSWORD,
+    port: parseInt(process.env.DB_PORT, 10),
+    dialect: process.env.DB_DIALECT,
+    language: process.env.SV_LANG,
+    secretKey: process.env.SECRET_KEY,
+  },
   test: {
     user: process.env.DB_USER,
     host: process.env.DB_HOST,
