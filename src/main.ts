@@ -17,8 +17,7 @@ async function bootstrap() {
   const port = serverConfig.server.port;
   const corsOptions = {
     origin: '*',
-    credentials: true,
-    optionSuccessStatus: 200,
+    methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
   };
 
   app.use(cors(corsOptions));
