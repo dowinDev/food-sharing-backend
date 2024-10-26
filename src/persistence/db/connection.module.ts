@@ -31,7 +31,7 @@ import { UploadController } from '../../controllers/uploadFile.controller';
 import { ServeStaticModule } from '@nestjs/serve-static';
 import { RedisConfig } from '../../config/redis.config';
 import { CacheModule } from '@nestjs/cache-manager';
-import { AuthenticateService } from "../../service/authenticate.service";
+import { AuthenticateService } from '../../service/authenticate.service';
 
 dotenv.config();
 
@@ -80,7 +80,7 @@ const paths = path.join(__dirname, '../..', 'utils', 'i18n');
     }),
     ServeStaticModule.forRoot({
       rootPath: path.join(__dirname, '../..', 'public', 'images'), // Đường dẫn đến thư mục chứa tệp tĩnh (ví dụ: 'uploads')
-      serveRoot: '/public/images', // URL bắt đầu với /uploads sẽ phục vụ các tệp tĩnh từ thư mục 'uploads'
+      serveRoot: '/images', // URL bắt đầu với /uploads sẽ phục vụ các tệp tĩnh từ thư mục 'uploads'
     }),
     CacheModule.register({
       isGlobal: true,
