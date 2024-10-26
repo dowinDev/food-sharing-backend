@@ -29,7 +29,7 @@ export class ProductMapper {
     response.nameProduct = rq.nameProduct;
     response.contact = rq.contact;
     response.description = rq.description;
-    response.image = `http://${host}:${port}/public/images/` + rq.image;
+    response.image = `https://${host}/images/` + rq.image;
     response.price = rq.price;
     response.expirationDate = rq.expirationDate;
     response.eatery = rq.eatery;
