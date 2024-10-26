@@ -68,7 +68,7 @@ export class ProductMapper {
       data.nameProduct = item.nameProduct;
       data.contact = item.contact;
       data.price = item.price;
-      data.image = `http://${host}:${port}/public/images/` + item.image;
+      data.image = `https://${host}/public/images/` + item.image;
       data.quantity = item.quantity;
       data.expirationDate = item.expirationDate;
       data.description = item.description;

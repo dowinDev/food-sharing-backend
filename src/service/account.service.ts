@@ -11,6 +11,7 @@ import { AuthenticateService } from './authenticate.service';
 import { AccountMapper } from '../utils/mapper/AccountMapper';
 import { AlreadyExistsException } from '../config/exception/already.exists';
 import { AuthenticationRequest } from '../dto/request/AuthenticationRequest';
+import { logger } from 'nestjs-i18n';
 
 @Injectable()
 export class AccountService {
@@ -48,6 +49,7 @@ export class AccountService {
       }
     } catch (error) {
       console.error('Error during user registration:', error);
+      logger.error('Error during user registration:', error);
       throw error;
     }
   }
@@ -59,6 +61,7 @@ export class AccountService {
       );
     } catch (error) {
       console.error('Error during user login:', error);
+      logger.error('Error during user login:', error);
       throw error;
     }
   }

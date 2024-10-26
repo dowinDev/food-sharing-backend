@@ -1,8 +1,8 @@
 import { NestFactory } from '@nestjs/core';
 import { Logger } from '@nestjs/common';
-import * as cookieParser from 'cookie-parser';
+import cookieParser from 'cookie-parser';
 import * as bodyParser from 'body-parser';
-import * as cors from 'cors';
+import cors from 'cors';
 
 import { serverConfig } from './config/sv.config';
 import { AppModule } from './persistence/db/connection.module';

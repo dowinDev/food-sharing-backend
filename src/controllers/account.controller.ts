@@ -15,6 +15,7 @@ import { AuthenticationRequest } from '../dto/request/AuthenticationRequest';
 import { JwtAuthGuard } from '../config/security/jwt.AuthGuard';
 import { Roles } from '../config/security/roles.decorator';
 import { rolesEnum } from '../utils/Constants';
+import logger from "../config/logger";
 
 @ApiTags('Account')
 @Controller('api/accounts')
@@ -54,6 +55,7 @@ export class AccountController {
       return ResponseWrapper.success(user);
     } catch (error) {
       console.error('Error:', error);
+      logger.error('Error:', error);
       throw error;
     }
   }

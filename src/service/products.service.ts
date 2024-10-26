@@ -10,6 +10,7 @@ import { PageData } from '../config/response/page.data';
 import { NotFoundException } from '../config/exception/not-found.exception';
 import { ProductResponse } from '../dto/response/ProductResponse';
 import { ConfigService } from '@nestjs/config';
+import logger from '../config/logger';
 
 @Injectable()
 export class ProductsService {
@@ -32,6 +33,7 @@ export class ProductsService {
       await this.productRepository.save(product);
     } catch (error) {
       console.error('Error add product:', error);
+      logger.error('Error add product:', error);
       throw error;
     }
   }
@@ -48,6 +50,7 @@ export class ProductsService {
       return ProductMapper.mapToPageProduct(products, page, limit, host, port);
     } catch (error) {
       console.error('Error get product', error);
+      logger.error('Error get product', error);
       throw error;
     }
   }
@@ -62,6 +65,7 @@ export class ProductsService {
       await this.productRepository.updateProduct(product, id);
     } catch (error) {
       console.error('Error update product', error);
+      logger.error('Error update product', error);
       throw error;
     }
   }
@@ -75,6 +79,7 @@ export class ProductsService {
       await this.productRepository.deleteProduct(id);
     } catch (error) {
       console.error('Error update product', error);
+      logger.error('Error update product', error);
       throw error;
     }
   }
@@ -88,6 +93,7 @@ export class ProductsService {
       return ProductMapper.mapToProductResponse(data, host, port);
     } catch (error) {
       console.error('Error get product by id', error);
+      logger.error('Error get product by id', error);
       throw error;
     }
   }

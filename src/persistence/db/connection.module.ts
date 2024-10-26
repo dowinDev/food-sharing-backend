@@ -10,7 +10,6 @@ import { databaseConfig } from '../../config/db.config';
 
 import { UserController } from '../../controllers/users.controller';
 import { AccountController } from '../../controllers/account.controller';
-import { AuthenticateController } from '../../controllers/authenticate.controller';
 
 import { UsersRepository } from '../repository/users.repository';
 import { AccountRepository } from '../repository/account.repository';
@@ -23,17 +22,16 @@ import { AuthService } from '../../config/security/auth.service';
 import { JwtStrategy } from '../../config/security/jwt.strategy';
 import { JwtAuthGuard } from '../../config/security/jwt.AuthGuard';
 import { APP_GUARD } from '@nestjs/core';
-import { AuthenticateService } from '../../service/authenticate.service';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { ProductsController } from '../../controllers/products.controller';
 import { ProductsService } from '../../service/products.service';
 import { ProductRepository } from '../repository/product.repository';
 import { EateryRepository } from '../repository/eatery.repository';
 import { UploadController } from '../../controllers/uploadFile.controller';
-import { UploadService } from '../../service/upload.service';
 import { ServeStaticModule } from '@nestjs/serve-static';
 import { RedisConfig } from '../../config/redis.config';
 import { CacheModule } from '@nestjs/cache-manager';
+import { AuthenticateService } from "../../service/authenticate.service";
 
 dotenv.config();
 
@@ -93,7 +91,6 @@ const paths = path.join(__dirname, '../..', 'utils', 'i18n');
   controllers: [
     UserController,
     AccountController,
-    AuthenticateController,
     UploadController,
     ProductsController,
   ],
@@ -102,7 +99,6 @@ const paths = path.join(__dirname, '../..', 'utils', 'i18n');
     AccountService,
     ProductsService,
     UserService,
-    UploadService,
     AuthenticateService,
     UsersRepository,
     ProductRepository,

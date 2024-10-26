@@ -7,12 +7,11 @@ import {
   BadRequestException,
 } from '@nestjs/common';
 import { FileInterceptor } from '@nestjs/platform-express';
-import { UploadService } from '../service/upload.service';
 import { multerOptions } from '../config/upload.config'; // Import cấu hình từ file config
 
 @Controller('upload')
 export class UploadController {
-  constructor(private readonly uploadService: UploadService) {}
+  constructor() {}
 
   @Post('image')
   @UseInterceptors(FileInterceptor('body', multerOptions))
