@@ -3,6 +3,7 @@ import { AuthPayload } from '../auth-payload';
 import { JwtService } from '@nestjs/jwt';
 import * as bcrypt from 'bcrypt';
 import { Accounts } from '../../persistence/entity/Accounts';
+import logger from "../logger";
 
 @Injectable()
 export class AuthService {
