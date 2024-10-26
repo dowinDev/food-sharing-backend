@@ -12,6 +12,9 @@ export class RegisterRequest {
   @ApiProperty()
   email: string;
 
+  @ApiProperty()
+  authKey: string;
+
   static validate(request: any): RegisterRequest {
     const registerRequest = new RegisterRequest();
 

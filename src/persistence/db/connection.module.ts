@@ -32,6 +32,8 @@ import { ServeStaticModule } from '@nestjs/serve-static';
 import { RedisConfig } from '../../config/redis.config';
 import { CacheModule } from '@nestjs/cache-manager';
 import { AuthenticateService } from '../../service/authenticate.service';
+import { OtpConfig } from '../../config/otp.config';
+import { EmailConfig } from '../../config/email.config';
 
 dotenv.config();
 
@@ -96,6 +98,8 @@ const paths = path.join(__dirname, '../..', 'utils', 'i18n');
   ],
   providers: [
     RedisConfig,
+    OtpConfig,
+    EmailConfig,
     AccountService,
     ProductsService,
     UserService,

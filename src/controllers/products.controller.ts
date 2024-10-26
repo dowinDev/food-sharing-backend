@@ -27,7 +27,7 @@ import { GetUserId, Roles } from '../config/security/roles.decorator';
 import { rolesEnum } from '../utils/Constants';
 import { FileInterceptor } from '@nestjs/platform-express';
 import { multerOptions } from '../config/upload.config';
-import logger from "../config/logger";
+import logger from '../config/logger';
 
 @ApiTags('Products')
 @Controller('api/products')

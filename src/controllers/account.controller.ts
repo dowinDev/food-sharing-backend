@@ -15,7 +15,7 @@ import { AuthenticationRequest } from '../dto/request/AuthenticationRequest';
 import { JwtAuthGuard } from '../config/security/jwt.AuthGuard';
 import { Roles } from '../config/security/roles.decorator';
 import { rolesEnum } from '../utils/Constants';
-import logger from "../config/logger";
+import logger from '../config/logger';
 
 @ApiTags('Account')
 @Controller('api/accounts')
@@ -56,6 +56,31 @@ export class AccountController {
     } catch (error) {
       console.error('Error:', error);
       logger.error('Error:', error);
+      throw error;
+    }
+  }
+
+  @Post('send-otp')
+  @ApiOperation({ tags: ['Account'], summary: 'send otp' })
+  async sendOtp(@Body('email') email: string) {
+    try {
+      await this.accountService.sendOTP(email);
+      return ResponseWrapper.success();
+    } catch (error) {
+      console.error('send otp error:', error);
+      logger.error('send otp error:', error);
+      throw error;
+    }
+  }
+
+  @Post('verify-otp')
+  async verifyOtp(@Body('email') email: string, @Body('otp') otp: string) {
+    try {
+      const verify = await this.accountService.verifyOTP(email, otp);
+      return ResponseWrapper.success(verify);
+    } catch (error) {
+      console.error('verify otp error:', error);
+      logger.error('verify otp error:', error);
       throw error;
     }
   }
