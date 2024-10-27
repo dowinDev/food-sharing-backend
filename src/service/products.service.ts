@@ -43,7 +43,7 @@ export class ProductsService {
     limit: number,
   ): Promise<PageData<ProductResponse>> {
     try {
-      const host = this.configService.get<string>('SV_HOST') || 'localhost';
+      const host = this.configService.get<string>('SV_HOST');
       const port = this.configService.get<number>('SV_PORT');
 
       const products = await this.productRepository.findAll(page, limit);
@@ -86,7 +86,7 @@ export class ProductsService {
 
   async getProductsById(id: number, userId: number) {
     try {
-      const host = this.configService.get<string>('SV_HOST') || 'localhost';
+      const host = this.configService.get<string>('SV_HOST');
       const port = this.configService.get<number>('SV_PORT');
 
       const data = await this.productRepository.findByIdAndEatery(userId, id);

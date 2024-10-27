@@ -13,9 +13,10 @@ import {
 import { ResponseWrapper } from '../config/response/response-wrapper';
 import { AuthenticationRequest } from '../dto/request/AuthenticationRequest';
 import { JwtAuthGuard } from '../config/security/jwt.AuthGuard';
-import { Roles } from '../config/security/roles.decorator';
+import { GetUserId, Roles } from '../config/security/roles.decorator';
 import { rolesEnum } from '../utils/Constants';
 import logger from '../config/logger';
+import { RefreshTokenRequest } from '../dto/request/refreshTokenRequest';
 
 @ApiTags('Account')
 @Controller('api/accounts')
@@ -85,14 +86,36 @@ export class AccountController {
     }
   }
 
-  //
-  // @Post()
-  // logout(req, res) {
-  //   try {
-  //     const user = await accountService.logout(req.body);
-  //     res.json(user);
-  //   } catch (error) {
-  //     res.status(500).json({ error: error.message });
-  //   }
-  // }
+  @Post('checkToken')
+  @Roles(rolesEnum.ADMIN, rolesEnum.USER)
+  async checkToken() {
+    console.log('token is active');
+  }
+
+  @Post('refresh')
+  async refresh(@Body() rq: RefreshTokenRequest) {
+    try {
+      const token = await this.accountService.refreshAccessToken(
+        rq.refreshToken,
+      );
+      return ResponseWrapper.success(token);
+    } catch (error) {
+      console.error('refresh token error:', error);
+      logger.error('refresh token error:', error);
+      throw error;
+    }
+  }
+
+  @Post('logout')
+  @Roles(rolesEnum.USER, rolesEnum.ADMIN)
+  async logout(@GetUserId() userId: number) {
+    try {
+      await this.accountService.logOut(userId);
+      return ResponseWrapper.success();
+    } catch (error) {
+      console.error('logout error:', error);
+      logger.error('logout error:', error);
+      throw error;
+    }
+  }
 }

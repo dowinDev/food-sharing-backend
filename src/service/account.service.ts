@@ -18,6 +18,7 @@ import randomatic from 'randomatic';
 import { VerifyOtpResponse } from '../dto/response/VerifyOtpResponse';
 import { AuthService } from '../config/security/auth.service';
 import { OtpInvalidException } from '../config/exception/otp-invalid.exception';
+import { NotFoundException } from '../config/exception/not-found.exception';
 
 @Injectable()
 export class AccountService {
@@ -112,5 +113,24 @@ export class AccountService {
       logger.error('Error verify otp:', error);
       throw error;
     }
+  }
+
+  async refreshAccessToken(refresh: string) {
+    try {
+      const newAccessToken = await this.authService.verifyRefreshToken(refresh);
+
+      if (!newAccessToken) {
+        throw new NotFoundException('Invalid or expired refresh token');
+      }
+      return newAccessToken;
+    } catch (error) {
+      console.error('refresh access-token error: ', error);
+      logger.error('refresh access-token error: ', error);
+      throw error;
+    }
+  }
+
+  async logOut(userId: number) {
+    this.authService.revokeRefreshToken(userId);
   }
 }

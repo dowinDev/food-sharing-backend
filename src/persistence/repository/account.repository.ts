@@ -50,4 +50,17 @@ export class AccountRepository {
       ],
     });
   }
+
+  async findById(id: number): Promise<Accounts> {
+    return this.accountsModel.findOne({
+      include: [
+        {
+          model: Users,
+          where: {
+            id: id,
+          },
+        },
+      ],
+    });
+  }
 }

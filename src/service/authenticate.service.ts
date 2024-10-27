@@ -5,6 +5,7 @@ import { Injectable } from '@nestjs/common';
 import { AuthenticationRequest } from '../dto/request/AuthenticationRequest';
 import { AccountRepository } from '../persistence/repository/account.repository';
 import { AuthService } from '../config/security/auth.service';
+import { AuthenticationResponse } from '../dto/response/AuthenticationResponse';
 
 @Injectable()
 export class AuthenticateService {
@@ -15,6 +16,7 @@ export class AuthenticateService {
   ) {}
 
   async authenticate(rq: AuthenticationRequest): Promise<any> {
+    const authentication = new AuthenticationResponse();
     const account = await this.accountRepository.findByUsername(
       rq.userName,
       rq.role,
@@ -28,6 +30,10 @@ export class AuthenticateService {
       return false;
     }
 
-    return this.authService.generateToken(account);
+    authentication.token = await this.authService.generateToken(account);
+    authentication.refreshToken =
+      await this.authService.generateRefreshToken(account);
+
+    return authentication;
   }
 }
