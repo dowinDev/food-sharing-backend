@@ -45,6 +45,20 @@ export class ProductUserXref extends Model<ProductUserXref> {
   })
   productId: number;
 
+  @Column({
+    field: 'organization',
+    type: DataType.STRING,
+    allowNull: true,
+  })
+  organization: string;
+
+  @Column({
+    field: 'reason',
+    type: DataType.TEXT,
+    allowNull: true,
+  })
+  reason: string;
+
   @BelongsTo(() => Users)
   user: Users;
 

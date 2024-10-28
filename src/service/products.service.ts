@@ -22,14 +22,17 @@ export class ProductsService {
 
   async addProduct(rq: ProductRequest, userId: number, imageUrl: string) {
     try {
-      const eatery = new Eatery();
-      eatery.nameStore = rq.nameStore;
-      eatery.location = rq.location;
-      eatery.userId = userId;
+      let store = await this.eateryRepository.findByName(rq.nameStore);
+      if (store === null) {
+        const eatery = new Eatery();
+        eatery.nameStore = rq.nameStore;
+        eatery.location = rq.location;
+        eatery.userId = userId;
 
-      const data = await this.eateryRepository.save(eatery);
+        store = await this.eateryRepository.save(eatery);
+      }
 
-      const product = ProductMapper.mapToProduct(rq, data, null, imageUrl);
+      const product = ProductMapper.mapToProduct(rq, store, null, imageUrl);
       await this.productRepository.save(product);
     } catch (error) {
       console.error('Error add product:', error);
@@ -44,10 +47,9 @@ export class ProductsService {
   ): Promise<PageData<ProductResponse>> {
     try {
       const host = this.configService.get<string>('SV_HOST');
-      const port = this.configService.get<number>('SV_PORT');
 
       const products = await this.productRepository.findAll(page, limit);
-      return ProductMapper.mapToPageProduct(products, page, limit, host, port);
+      return ProductMapper.mapToPageProduct(products, page, limit, host);
     } catch (error) {
       console.error('Error get product', error);
       logger.error('Error get product', error);
@@ -87,10 +89,9 @@ export class ProductsService {
   async getProductsById(id: number, userId: number) {
     try {
       const host = this.configService.get<string>('SV_HOST');
-      const port = this.configService.get<number>('SV_PORT');
 
       const data = await this.productRepository.findByIdAndEatery(userId, id);
-      return ProductMapper.mapToProductResponse(data, host, port);
+      return ProductMapper.mapToProductResponse(data, host);
     } catch (error) {
       console.error('Error get product by id', error);
       logger.error('Error get product by id', error);

@@ -16,4 +16,10 @@ export class EateryRepository {
       userId: eatery.userId,
     });
   }
+
+  async findByName(nameStore: string): Promise<Eatery> {
+    return await this.eateryModel.findOne({
+      where: { nameStore: nameStore },
+    });
+  }
 }

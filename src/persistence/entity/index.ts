@@ -5,6 +5,7 @@ import { FeedBacks } from './FeedBacks';
 import { Products } from './Products';
 import { ProductUserXref } from './ProductUserXref';
 import { ContactsUs } from './ContactsUs';
+import { PurchaseHistory } from './PurchaseHistory';
 
 export const models = [
   Accounts,
@@ -12,6 +13,7 @@ export const models = [
   Eatery,
   FeedBacks,
   Products,
+  PurchaseHistory,
   ProductUserXref,
   ContactsUs,
 ];

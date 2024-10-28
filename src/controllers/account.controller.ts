@@ -90,6 +90,7 @@ export class AccountController {
   @Roles(rolesEnum.ADMIN, rolesEnum.USER)
   async checkToken() {
     console.log('token is active');
+    return ResponseWrapper.success();
   }
 
   @Post('refresh')
