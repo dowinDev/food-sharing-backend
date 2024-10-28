@@ -49,7 +49,7 @@ async function bootstrap() {
   try {
     SwaggerModule.setup('api', app, document);
     await app.listen(port);
-    logger.log(`Swagger is running on http://${host}:${port}/api`);
+    logger.log(`Swagger is running on ${host}/api`);
   } catch (err) {
     logger.error('Unable to connect to the database:', err);
   }

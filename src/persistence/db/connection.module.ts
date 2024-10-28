@@ -81,8 +81,8 @@ const paths = path.join(__dirname, '../..', 'utils', 'i18n');
       isGlobal: true, // Để sử dụng ConfigService trong toàn bộ ứng dụng
     }),
     ServeStaticModule.forRoot({
-      rootPath: path.join(__dirname, '../..', 'public', 'images'), // Đường dẫn đến thư mục chứa tệp tĩnh (ví dụ: 'uploads')
-      serveRoot: '/images', // URL bắt đầu với /uploads sẽ phục vụ các tệp tĩnh từ thư mục 'uploads'
+      rootPath: path.join(__dirname, '../..', 'public', 'images'),
+      serveRoot: '/images',
     }),
     CacheModule.register({
       isGlobal: true,

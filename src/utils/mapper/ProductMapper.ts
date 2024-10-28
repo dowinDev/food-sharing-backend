@@ -23,13 +23,13 @@ export class ProductMapper {
     return product;
   }
 
-  static mapToProductResponse(rq: Products, host: string, port: number) {
+  static mapToProductResponse(rq: Products, host: string) {
     const response = new ProductResponse();
     response.id = rq.id;
     response.nameProduct = rq.nameProduct;
     response.contact = rq.contact;
     response.description = rq.description;
-    response.image = `https://${host}/images/` + rq.image;
+    response.image = `${host}/images/` + rq.image;
     response.price = rq.price;
     response.expirationDate = rq.expirationDate;
     response.eatery = rq.eatery;
@@ -42,7 +42,6 @@ export class ProductMapper {
     page: number,
     limit: number,
     host: string,
-    port: number,
   ): PageData<ProductResponse> {
     const arrData: ProductResponse[] = [];
 
@@ -68,7 +67,7 @@ export class ProductMapper {
       data.nameProduct = item.nameProduct;
       data.contact = item.contact;
       data.price = item.price;
-      data.image = `https://${host}/images/` + item.image;
+      data.image = `${host}/images/` + item.image;
       data.quantity = item.quantity;
       data.expirationDate = item.expirationDate;
       data.description = item.description;

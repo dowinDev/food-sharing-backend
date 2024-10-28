@@ -9,6 +9,7 @@ import {
 } from 'sequelize-typescript';
 import { Eatery } from './Eaterys';
 import { ProductUserXref } from './ProductUserXref';
+import { PurchaseHistory } from './PurchaseHistory';
 
 @Table({
   tableName: 'products',
@@ -85,4 +86,7 @@ export class Products extends Model<Products> {
 
   @HasMany(() => ProductUserXref)
   productUserXrefs: ProductUserXref[];
+
+  @HasMany(() => PurchaseHistory)
+  purchaseHistory: PurchaseHistory[];
 }

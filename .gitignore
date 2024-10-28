@@ -22,7 +22,7 @@ lerna-debug.log
 .pnp.js
 
 ### Logs ###
-logs
+/logs
 *.log
 npm-debug.log*
 pnpm-debug.log*
