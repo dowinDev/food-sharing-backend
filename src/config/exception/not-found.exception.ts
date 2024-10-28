@@ -19,8 +19,8 @@ export class NotFoundException extends HttpException {
 
     super(
       {
-        statusCode: errorCode.status,
-        errorCode: errorCode.code,
+        code: errorCode.code,
+        status: errorCode.status,
         message: errorMessage,
       },
       errorCode.status,
