@@ -79,7 +79,7 @@ export class ProductRepository {
       },
       include: {
         model: Eatery,
-        attributes: ['id', 'nameStore'],
+        attributes: ['id', 'nameStore', 'location'],
       },
     });
   }
