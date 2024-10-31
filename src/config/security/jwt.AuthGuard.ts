@@ -34,8 +34,17 @@ export class JwtAuthGuard implements CanActivate {
 
     let user: any;
     try {
-      user = this.jwtService.verify(token); // Giải mã token
-      request.user = user; // Lưu thông tin người dùng vào request
+      user = this.jwtService.verify(token);
+      request.user = user;
+
+      // Kiểm tra nếu token hết hạn
+      const currentTimestamp = Math.floor(Date.now() / 1000);
+      if (user.exp && user.exp < currentTimestamp) {
+        throw new CustomUnauthorizedException(
+          ErrorCode.ACCESS_DENIED.code,
+          'Token has expired',
+        );
+      }
     } catch (error) {
       console.error(error);
       throw new CustomUnauthorizedException(
