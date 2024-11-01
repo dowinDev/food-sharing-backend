@@ -27,13 +27,15 @@ import { ProductsController } from '../../controllers/products.controller';
 import { ProductsService } from '../../service/products.service';
 import { ProductRepository } from '../repository/product.repository';
 import { EateryRepository } from '../repository/eatery.repository';
-import { UploadController } from '../../controllers/uploadFile.controller';
 import { ServeStaticModule } from '@nestjs/serve-static';
 import { RedisConfig } from '../../config/redis.config';
 import { CacheModule } from '@nestjs/cache-manager';
 import { AuthenticateService } from '../../service/authenticate.service';
 import { OtpConfig } from '../../config/otp.config';
 import { EmailConfig } from '../../config/email.config';
+import { FeedBacksRepository } from '../repository/feedBacks.repository';
+import { FeedBackController } from '../../controllers/feedBack.controller';
+import { FeedBacksService } from '../../service/feedBacks.service';
 
 dotenv.config();
 
@@ -93,23 +95,25 @@ const paths = path.join(__dirname, '../..', 'utils', 'i18n');
   controllers: [
     UserController,
     AccountController,
-    UploadController,
     ProductsController,
+    FeedBackController,
   ],
   providers: [
+    JwtStrategy,
     RedisConfig,
     OtpConfig,
     EmailConfig,
-    AccountService,
-    ProductsService,
-    UserService,
     AuthenticateService,
+    FeedBacksService,
+    ProductsService,
+    AccountService,
+    UserService,
+    AuthService,
+    FeedBacksRepository,
     UsersRepository,
     ProductRepository,
     AccountRepository,
     EateryRepository,
-    AuthService,
-    JwtStrategy,
     {
       provide: APP_GUARD,
       useClass: JwtAuthGuard,

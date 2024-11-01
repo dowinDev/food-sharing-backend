@@ -1,7 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/sequelize';
 import { Products } from '../entity/Products';
-import { PageData } from '../../config/response/page.data';
 import { Eatery } from '../entity/Eaterys';
 
 @Injectable()

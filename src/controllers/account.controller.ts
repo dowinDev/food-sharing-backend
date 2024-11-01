@@ -1,6 +1,13 @@
 'use strict';
 
-import { Body, Controller, Get, Post, UseGuards } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Get,
+  InternalServerErrorException,
+  Post,
+  UseGuards,
+} from '@nestjs/common';
 import { AccountService } from '../service/account.service';
 import { RegisterRequest } from '../dto/request/RegisterRequest';
 import { AuthenticationResponse } from '../dto/response/AuthenticationResponse';

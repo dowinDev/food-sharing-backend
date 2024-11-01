@@ -117,12 +117,15 @@ export class AccountService {
 
   async refreshAccessToken(refresh: string) {
     try {
-      const newAccessToken = await this.authService.verifyRefreshToken(refresh);
-
-      if (!newAccessToken) {
-        throw new NotFoundException('Invalid or expired refresh token');
+      if (refresh !== null) {
+        const newAccessToken =
+          await this.authService.verifyRefreshToken(refresh);
+        if (!newAccessToken) {
+          throw new NotFoundException('Invalid or expired refresh token');
+        }
+        return newAccessToken;
       }
-      return newAccessToken;
+      throw new NotFoundException();
     } catch (error) {
       console.error('refresh access-token error: ', error);
       logger.error('refresh access-token error: ', error);
