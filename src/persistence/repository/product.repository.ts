@@ -72,7 +72,7 @@ export class ProductRepository {
     );
   }
 
-  async findByIdAndEatery(userId: number, id: number): Promise<Products> {
+  async findByIdAndEatery(id: number): Promise<Products> {
     return await this.productsModel.findOne({
       where: {
         id: id,

@@ -111,12 +111,11 @@ export class ProductsController {
   }
 
   @Get('/:id')
-  @Roles(rolesEnum.ADMIN, rolesEnum.USER)
   @ApiOperation({ tags: ['Products'], summary: 'get product by id' })
-  async getProductById(@Param('id') id: number, @GetUserId() userId: number) {
+  async getProductById(@Param('id') id: number) {
     try {
       return ResponseWrapper.success(
-        await this.productService.getProductsById(id, userId),
+        await this.productService.getProductsById(id),
       );
     } catch (error) {
       console.error(error);

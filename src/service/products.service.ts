@@ -86,11 +86,11 @@ export class ProductsService {
     }
   }
 
-  async getProductsById(id: number, userId: number) {
+  async getProductsById(id: number) {
     try {
       const host = this.configService.get<string>('SV_HOST');
 
-      const data = await this.productRepository.findByIdAndEatery(userId, id);
+      const data = await this.productRepository.findByIdAndEatery(id);
       return ProductMapper.mapToProductResponse(data, host);
     } catch (error) {
       console.error('Error get product by id', error);
