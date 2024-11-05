@@ -3,6 +3,7 @@ import { InjectModel } from '@nestjs/sequelize';
 import { FeedBacks } from '../entity/FeedBacks';
 import { Eatery } from '../entity/Eaterys';
 import { Users } from '../entity/Users';
+import { Products } from '../entity/Products';
 
 @Injectable()
 export class FeedBacksRepository {
@@ -14,7 +15,7 @@ export class FeedBacksRepository {
   async save(feedBack: FeedBacks) {
     return await this.feedBacksModel.create({
       userId: feedBack.userId,
-      eateryId: feedBack.eateryId,
+      productId: feedBack.productId,
       message: feedBack.message,
       rating: feedBack.rating,
     });
@@ -54,11 +55,23 @@ export class FeedBacksRepository {
       await this.feedBacksModel.findAndCountAll({
         limit,
         offset,
-        where: { eateryId: eateryId },
-        include: {
-          model: Users,
-          attributes: ['userName'],
-        },
+        include: [
+          {
+            model: Products,
+            attributes: ['id'],
+            include: [
+              {
+                model: Eatery,
+                where: { id: eateryId },
+                attributes: ['id', 'nameStore', 'location', 'phone', 'userId'],
+              },
+            ],
+          },
+          {
+            model: Users,
+            attributes: ['userName'],
+          },
+        ],
       });
     return { content, totalElements };
   }
@@ -72,8 +85,14 @@ export class FeedBacksRepository {
           attributes: ['userName'],
         },
         {
-          model: Eatery,
-          attributes: ['nameStore'],
+          model: Products,
+          attributes: ['id', 'eateryId'],
+          include: [
+            {
+              model: Eatery,
+              attributes: ['id', 'nameStore', 'location', 'phone', 'userId'],
+            },
+          ],
         },
       ],
     });

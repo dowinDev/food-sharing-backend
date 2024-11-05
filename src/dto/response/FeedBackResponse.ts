@@ -2,7 +2,7 @@
 
 import { ApiProperty } from '@nestjs/swagger';
 import { Users } from '../../persistence/entity/Users';
-import { Eatery } from '../../persistence/entity/Eaterys';
+import { Products } from '../../persistence/entity/Products';
 
 export class FeedBackResponse {
   @ApiProperty()
@@ -11,8 +11,8 @@ export class FeedBackResponse {
   @ApiProperty({ type: Users })
   user: Users = new Users();
 
-  @ApiProperty({ type: Eatery })
-  eatery: Eatery = new Eatery();
+  @ApiProperty({ type: Products })
+  product: Products = new Products();
 
   @ApiProperty()
   eateryId: number;

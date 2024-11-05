@@ -20,4 +20,7 @@ export class ProductRequest {
 
   @ApiProperty()
   location: string;
+
+  @ApiProperty()
+  description: string;
 }

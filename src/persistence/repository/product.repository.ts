@@ -13,6 +13,7 @@ export class ProductRepository {
   async save(product: Products): Promise<Products> {
     return await this.productsModel.create({
       nameProduct: product.nameProduct,
+      description: product.description,
       contact: product.contact,
       quantity: product.quantity,
       price: product.price,

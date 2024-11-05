@@ -3,13 +3,14 @@ import { FeedBacks } from '../../persistence/entity/FeedBacks';
 import { PageData } from '../../config/response/page.data';
 import { FeedBackResponse } from '../../dto/response/FeedBackResponse';
 import { Users } from '../../persistence/entity/Users';
+import { Products } from '../../persistence/entity/Products';
 
 export class FeedBackMapper {
   static mapFeedBackToRequest(rq: FeedBacksRequest, userId: number) {
     const feedBack = new FeedBacks();
 
     feedBack.userId = userId;
-    feedBack.eateryId = rq.eateryId;
+    feedBack.productId = rq.productId;
     feedBack.message = rq.message;
     feedBack.rating = rq.rating;
 
@@ -30,6 +31,7 @@ export class FeedBackMapper {
     data.content.forEach(function (item: {
       id: number;
       user: Users;
+      product: Products;
       message: string;
       rating: number;
     }) {
@@ -39,6 +41,7 @@ export class FeedBackMapper {
       feedBack.rating = item.rating;
       feedBack.message = item.message;
       feedBack.user = item.user;
+      feedBack.product = item.product;
 
       arrData.push(feedBack);
     });
@@ -53,7 +56,7 @@ export class FeedBackMapper {
     response.message = data.message;
     response.rating = data.rating;
     response.user = data.user;
-    response.eatery = data.eatery;
+    response.product = data.product;
 
     return response;
   }

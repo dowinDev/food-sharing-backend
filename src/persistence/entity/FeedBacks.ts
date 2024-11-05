@@ -7,7 +7,7 @@ import {
   BelongsTo,
 } from 'sequelize-typescript';
 import { Users } from './Users';
-import { Eatery } from './Eaterys';
+import { Products } from './Products';
 
 @Table({
   tableName: 'feedbacks',
@@ -44,17 +44,17 @@ export class FeedBacks extends Model<FeedBacks> {
   })
   userId: number;
 
-  @ForeignKey(() => Eatery)
+  @ForeignKey(() => Products)
   @Column({
-    field: 'eatery_id',
+    field: 'product_id',
     type: DataType.INTEGER,
     allowNull: false,
   })
-  eateryId: number;
+  productId: number;
 
   @BelongsTo(() => Users)
   user: Users;
 
-  @BelongsTo(() => Eatery)
-  eatery: Eatery;
+  @BelongsTo(() => Products)
+  product: Products;
 }

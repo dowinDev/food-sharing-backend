@@ -58,7 +58,4 @@ export class Eatery extends Model<Eatery> {
 
   @HasMany(() => Products)
   products: Products[];
-
-  @HasMany(() => FeedBacks)
-  feedbacks: FeedBacks[];
 }

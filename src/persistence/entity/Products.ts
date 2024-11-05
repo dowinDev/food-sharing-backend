@@ -10,6 +10,7 @@ import {
 import { Eatery } from './Eaterys';
 import { ProductUserXref } from './ProductUserXref';
 import { PurchaseHistory } from './PurchaseHistory';
+import { FeedBacks } from './FeedBacks';
 
 @Table({
   tableName: 'products',
@@ -89,4 +90,7 @@ export class Products extends Model<Products> {
 
   @HasMany(() => PurchaseHistory)
   purchaseHistory: PurchaseHistory[];
+
+  @HasMany(() => FeedBacks)
+  feedBacks: FeedBacks[];
 }

@@ -15,6 +15,7 @@ export class ProductMapper {
   ) {
     const product = new Products();
     product.nameProduct = rq.nameProduct;
+    product.description = rq.description;
     product.quantity = rq.quantity;
     product.price = rq.price;
     product.image = image;
