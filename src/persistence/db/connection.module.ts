@@ -75,8 +75,8 @@ const paths = path.join(__dirname, '../..', 'utils', 'i18n');
       imports: [ConfigModule],
       inject: [ConfigService],
       useFactory: () => ({
-        secret: currentConfig.secretKey, // Khóa bí mật để mã hóa JWT
-        signOptions: { expiresIn: '1h' }, // Thời gian hết hạn của token
+        secret: currentConfig.secretKey,
+        signOptions: { expiresIn: '1h' },
       }),
     }),
     ConfigModule.forRoot({
