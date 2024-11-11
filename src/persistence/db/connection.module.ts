@@ -28,7 +28,6 @@ import { ProductsService } from '../../service/products.service';
 import { ProductRepository } from '../repository/product.repository';
 import { EateryRepository } from '../repository/eatery.repository';
 import { ServeStaticModule } from '@nestjs/serve-static';
-import { RedisConfig } from '../../config/redis.config';
 import { CacheModule } from '@nestjs/cache-manager';
 import { AuthenticateService } from '../../service/authenticate.service';
 import { OtpConfig } from '../../config/otp.config';
@@ -100,7 +99,6 @@ const paths = path.join(__dirname, '../..', 'utils', 'i18n');
   ],
   providers: [
     JwtStrategy,
-    RedisConfig,
     OtpConfig,
     EmailConfig,
     AuthenticateService,
@@ -119,6 +117,6 @@ const paths = path.join(__dirname, '../..', 'utils', 'i18n');
       useClass: JwtAuthGuard,
     },
   ],
-  exports: [AuthService, I18nModule, RedisConfig],
+  exports: [AuthService, I18nModule],
 })
 export class AppModule {}

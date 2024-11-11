@@ -14,7 +14,7 @@ export const databaseConfig = {
     language: process.env.SV_LANG,
     secretKey: process.env.SECRET_KEY,
   },
-  server: {
+  prod: {
     user: process.env.DB_USER,
     host: process.env.DB_HOST_SERVER,
     database: process.env.DB_NAME,
