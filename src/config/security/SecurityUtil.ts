@@ -2,7 +2,7 @@
 
 import { ExecutionContext } from '@nestjs/common';
 import { Request } from 'express';
-import { Users } from '../../persistence/entity/Users'; // Thay đổi đường dẫn cho đúng
+import { Users } from '../../persistence/entity/Users';
 
 export class SecurityUtils {
   static getAuthenticatedUser(context: ExecutionContext): Users {

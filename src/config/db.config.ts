@@ -17,7 +17,7 @@ export const databaseConfig = {
   prod: {
     user: process.env.DB_USER,
     host: process.env.DB_HOST_SERVER,
-    database: process.env.DB_NAME,
+    database: process.env.DB_NAME_SERVER,
     password: process.env.DB_PASSWORD,
     port: parseInt(process.env.DB_PORT, 10),
     dialect: process.env.DB_DIALECT,
