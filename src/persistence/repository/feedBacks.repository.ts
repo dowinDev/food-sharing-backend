@@ -48,7 +48,7 @@ export class FeedBacksRepository {
     );
   }
 
-  async findByEateryId(eateryId: number, page: number, limit: number) {
+  async findByEateryId(productId: number, page: number, limit: number) {
     const offset = (page - 1) * limit;
 
     const { rows: content, count: totalElements } =
@@ -59,10 +59,10 @@ export class FeedBacksRepository {
           {
             model: Products,
             attributes: ['id'],
+            where: { id: productId },
             include: [
               {
                 model: Eatery,
-                where: { id: eateryId },
                 attributes: ['id', 'nameStore', 'location', 'phone', 'userId'],
               },
             ],

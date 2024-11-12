@@ -72,13 +72,13 @@ export class FeedBackController {
   @Roles(rolesEnum.USER, rolesEnum.ADMIN)
   @ApiOperation({ tags: ['feedBacks'], summary: 'view feed-back by eatery-id' })
   async getAllFeedBack(
-    @Query('productId') eateryId: number,
+    @Query('productId') productId: number,
     @Query('page') page: number = 1,
     @Query('limit') limit: number = 10,
   ) {
     try {
       const message = await this.feedBacksService.viewAll(
-        eateryId,
+        productId,
         page,
         limit,
       );

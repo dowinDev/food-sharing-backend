@@ -45,10 +45,10 @@ export class FeedBacksService {
     await this.feedBacksRepository.delete(id);
   }
 
-  async viewAll(eateryId: number, page: number, limit: number) {
+  async viewAll(productId: number, page: number, limit: number) {
     try {
       const data = await this.feedBacksRepository.findByEateryId(
-        eateryId,
+        productId,
         page,
         limit,
       );
