@@ -77,7 +77,7 @@ logger.error(JSON.stringify(currentConfig));
       inject: [ConfigService],
       useFactory: () => ({
         secret: currentConfig.secretKey,
-        signOptions: { expiresIn: '2m' },
+        signOptions: { expiresIn: '1h' },
       }),
     }),
     ConfigModule.forRoot({
