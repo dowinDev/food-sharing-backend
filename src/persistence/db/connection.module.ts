@@ -75,7 +75,7 @@ const paths = path.join(__dirname, '../..', 'utils', 'i18n');
       inject: [ConfigService],
       useFactory: () => ({
         secret: currentConfig.secretKey,
-        signOptions: { expiresIn: '1h' },
+        signOptions: { expiresIn: '1m' },
       }),
     }),
     ConfigModule.forRoot({
