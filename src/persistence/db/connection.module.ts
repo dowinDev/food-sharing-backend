@@ -35,6 +35,7 @@ import { EmailConfig } from '../../config/email.config';
 import { FeedBacksRepository } from '../repository/feedBacks.repository';
 import { FeedBackController } from '../../controllers/feedBack.controller';
 import { FeedBacksService } from '../../service/feedBacks.service';
+import logger from '../../config/logger';
 
 dotenv.config();
 
@@ -42,6 +43,7 @@ dotenv.config();
 const environment = process.env.NODE_ENV;
 const currentConfig = databaseConfig[environment];
 const paths = path.join(__dirname, '../..', 'utils', 'i18n');
+logger.error(JSON.stringify(currentConfig));
 
 @Module({
   imports: [
