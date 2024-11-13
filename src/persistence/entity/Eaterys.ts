@@ -9,7 +9,6 @@ import {
 } from 'sequelize-typescript';
 import { Users } from './Users';
 import { Products } from './Products';
-import { FeedBacks } from './FeedBacks';
 
 @Table({
   tableName: 'eatery',
